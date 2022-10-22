@@ -15,7 +15,7 @@ public class MainPage extends javax.swing.JFrame {
     MainHistory history;
     String[] cityarray = {"Boston","New York","Los Angeles"};
     
-//    System.out.println(cityarray[0]);
+
     
     /**
      * Creates new form MainPage
@@ -28,9 +28,7 @@ public class MainPage extends javax.swing.JFrame {
             MainModel mainM = history.addNewCity();
             mainM.setCity(cityarray[i]);
         }
-        for(MainModel mainM : history.getHistory()){
-            System.out.println(mainM.getCity());
-        }
+        
         
     }
 
@@ -148,8 +146,7 @@ public class MainPage extends javax.swing.JFrame {
     private void systemAdminbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_systemAdminbtn1ActionPerformed
            SystemAdminPane obj = new SystemAdminPane(history);
            jSplitPane1.setRightComponent(obj);
-//           System.out.println(cityarray[0]);
-// TODO add your handling code here:
+
     }//GEN-LAST:event_systemAdminbtn1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
