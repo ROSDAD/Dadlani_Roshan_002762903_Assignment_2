@@ -13,11 +13,12 @@ import java.util.ArrayList;
 public class MainHistory {    
     
     private ArrayList<MainModel> history;
+//    Arraylist hospitalArray = new ArrayList();
     
     public MainHistory() {
         this.history = new ArrayList<MainModel>();
     }
-
+ 
     public ArrayList<MainModel> getHistory() {
         return history;
     }
@@ -33,6 +34,7 @@ public class MainHistory {
         
         
     }
+
    
     public void deleteEmployee(MainModel mainmod){
        history.remove(mainmod);

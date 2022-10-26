@@ -4,6 +4,7 @@
  */
 package com.mycompany.aedassignment2;
 
+import java.util.ArrayList;
 import model.MainHistory;
 import model.MainModel;
 
@@ -26,9 +27,11 @@ public class MainPage extends javax.swing.JFrame {
         
         for(int i=0; i < cityarray.length;i++){
             MainModel mainM = history.addNewCity();
+            
             mainM.setCity(cityarray[i]);
+            System.out.println(mainM);
         }
-        
+
         
     }
 

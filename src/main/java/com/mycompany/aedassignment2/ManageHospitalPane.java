@@ -5,7 +5,9 @@
 package com.mycompany.aedassignment2;
 
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import model.MainHistory;
+
 import model.MainModel;
 
 /**
@@ -23,7 +25,9 @@ public class ManageHospitalPane extends javax.swing.JPanel {
         cityCombobox.removeAllItems();
         for(MainModel mainM : history.getHistory()){
                 cityCombobox.addItem(mainM.getCity());
+                
             }
+        displayHospital(cityCombobox.getSelectedIndex());
     }
 
     /**
@@ -37,7 +41,7 @@ public class ManageHospitalPane extends javax.swing.JPanel {
 
         cityCombobox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        hospitalTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -64,18 +68,18 @@ public class ManageHospitalPane extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        hospitalTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "UID", "NAME", "ADDRESS", "CONTACT"
+                "NAME", "ADDRESS", "CONTACT"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(hospitalTable);
 
         jLabel1.setText("Name");
 
@@ -227,9 +231,12 @@ public class ManageHospitalPane extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cityComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboboxActionPerformed
-
+        if(cityCombobox.getSelectedIndex()!=-1){
+            displayHospital(cityCombobox.getSelectedIndex());
+        }
         
-
+        
+           
     }//GEN-LAST:event_cityComboboxActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
@@ -245,13 +252,42 @@ public class ManageHospitalPane extends javax.swing.JPanel {
             String Address = inpAddress.getText();
             long Contact = Long.parseLong(inpContact.getText());
             String City = (String) cityCombobox.getSelectedItem();
+
             ArrayList<MainModel> mainM = history.getHistory();
-            
-//            for(MainModel mainM : history.getHistory()){
-////                cityCombobox.addItem(mainM.getCity());
-//                
-//            }
-            
+
+            System.out.println(mainM.size());
+            int Flag = 0;
+            for(int i = 0;i<mainM.size();i++){
+                if(mainM.get(i).getCity() == cityCombobox.getSelectedItem().toString()){
+                    System.out.println(mainM.get(i).getCity());
+                    mainM.get(i).getHospitalArray();
+                    for(int k =0 ; k < mainM.get(i).getHospitalArray().size();k++){
+
+                        if(mainM.get(i).getHospitalArray().get(k).getHospitalName().equals(Name)){
+                            Flag = 1;
+
+                        }
+                    }
+                    if(Flag == 0){
+
+                        MainModel mainMo = mainM.get(i).addNewHospital();
+                        mainMo.setHospitalName(Name);
+                        mainMo.setHospitalContact(Contact);
+                        mainMo.setHospitalAddress(Address);
+                        System.out.println(mainM.get(i).getHospitalArray().get(0).getHospitalName()+" "+i);
+                        displayHospital(cityCombobox.getSelectedIndex());
+
+                    }
+                    else{
+                        System.out.println("Hospital Already Exists");
+                    }
+                    break;
+                }
+
+            }
+        
+        
+
     }//GEN-LAST:event_addBtnActionPerformed
 
 
@@ -259,6 +295,7 @@ public class ManageHospitalPane extends javax.swing.JPanel {
     private javax.swing.JButton addBtn;
     private javax.swing.JComboBox<String> cityCombobox;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JTable hospitalTable;
     private javax.swing.JTextField inpAddress;
     private javax.swing.JTextField inpContact;
     private javax.swing.JTextField inpName;
@@ -271,11 +308,45 @@ public class ManageHospitalPane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField updateAddress;
     private javax.swing.JButton updateBtn;
     private javax.swing.JTextField updateContact;
     private javax.swing.JTextField updateName;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
+    private void displayHospital(int j) {
+        DefaultTableModel model = (DefaultTableModel) hospitalTable.getModel();
+        model.setRowCount(0);
+        ArrayList<MainModel> mainM = history.getHistory();
+               
+              
+        for (int i =0;i<mainM.get(j).getHospitalArray().size();i++){
+          if(mainM.get(j).getHospitalArray().get(i).getHospitalName() != null){
+            Object[] row = new Object[3];
+            row[0] = mainM;
+
+            row[0] = mainM.get(j).getHospitalArray().get(i).getHospitalName();
+            row[1] = mainM.get(j).getHospitalArray().get(i).getHospitalAddress();
+            row[2] = mainM.get(j).getHospitalArray().get(i).getHospitalContact();
+            
+//            row[2] = MainM.getEmployeeID();
+//            row[3] = MainM.getAge();
+//            row[4] = emp.getGender();
+//            row[5] = emp.getStart_date();
+//            row[6] = emp.getLevel();
+//            row[7] = emp.getTeam_Info();
+//            row[8] = emp.getPosition_title();
+//            row[9] = emp.getCell_phone_number();
+//            row[10] = emp.getEmail_address();
+//            row[11] = emp.getPhoto();
+
+            model.addRow(row);
+           
+            }
+        }
+        
+
+    }
+
+
 }

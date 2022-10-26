@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Admin
@@ -11,8 +13,11 @@ package model;
 public class MainModel {
       private String Name;
       private int EmployeeID;
-      private int Age;    //2
+      private int Age;    
       private String Gender;
+      private String HospitalName;
+      private long HospitalContact;
+      private String HospitalAddress;
       private String Start_date;
       private String Level;
       private String City;
@@ -21,103 +26,44 @@ public class MainModel {
       private Long Cell_phone_number;  //2
       private String Email_address;
       private String Photo;
+      private ArrayList<MainModel> hospitalArray = new ArrayList();
 
-    public String getName() {
-        return Name;
+
+   
+    public MainModel addNewHospital(){
+        MainModel mainModel = new MainModel();
+        this.hospitalArray.add(mainModel);
+        return mainModel;
+    }
+    public ArrayList<MainModel> getHospitalArray() {
+        return hospitalArray;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setHospitalName(String HospitalName) {
+        this.HospitalName = HospitalName;
     }
-
-    public int getEmployeeID() {
-        return EmployeeID;
+    public String getHospitalName() {
+        return HospitalName;
     }
-
-    public void setEmployeeID(int EmployeeID) {
-        this.EmployeeID = EmployeeID;
+    public void setHospitalContact(long HospitalContact) {
+        
+        this.HospitalContact = HospitalContact;
     }
-
-    public int getAge() {
-        return Age;
+    public long getHospitalContact() {
+        return HospitalContact;
     }
-
-    public void setAge(int Age) {
-        this.Age = Age;
+    public void setHospitalAddress(String HospitalAddress) {
+        
+        this.HospitalAddress = HospitalAddress;
     }
-
-    public String getGender() {
-        return Gender;
-    }
-
-    public void setGender(String Gender) {
-        this.Gender = Gender;
+    public String getHospitalAddress() {
+        return HospitalAddress;
     }
     public void setCity(String City) {
         this.City = City;
     }
     public String getCity() {
         return City;
-    }
-    public String getStart_date() {
-        return Start_date;
-    }
-
-    public void setStart_date(String Start_date) {
-        this.Start_date = Start_date;
-    }
-
-    public String getLevel() {
-        return Level;
-    }
-
-    public void setLevel(String Level) {
-        this.Level = Level;
-    }
-
-    public String getTeam_Info() {
-        return Team_Info;
-    }
-
-    public void setTeam_Info(String Team_Info) {
-        this.Team_Info = Team_Info;
-    }
-
-    
-    public void setPhoto(String Photo) {
-            this.Photo = Photo;
-    }
-    public String getPhoto() {
-        return Photo;
-    }
-    public String getPosition_title() {
-        return Position_title;
-    }
-
-    public void setPosition_title(String Position_title) {
-        this.Position_title = Position_title;
-    }
-
-    public Long getCell_phone_number() {
-        return Cell_phone_number;
-    }
-
-    public void setCell_phone_number(Long Cell_phone_number) {
-        this.Cell_phone_number = Cell_phone_number;
-    }
-
-    public String getEmail_address() {
-        return Email_address;
-    }
-
-    public void setEmail_address(String Email_address) {
-        this.Email_address = Email_address;
-    }
-      
-    @Override
-    public String toString(){
-        return Start_date;
-        
     }
 
 
