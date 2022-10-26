@@ -7,27 +7,42 @@ package com.mycompany.aedassignment2;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import model.MainHistory;
-
 import model.MainModel;
 
 /**
  *
  * @author rosha
  */
-public class ManageHospitalPane extends javax.swing.JPanel {
+public class ManageDoctorPane extends javax.swing.JPanel {
+
     MainHistory history;
+
     /**
-     * Creates new form ReadHospitalPane
+     * Creates new form ManageDoctorPane
      */
-    public ManageHospitalPane(MainHistory history) {
+    public ManageDoctorPane(MainHistory history) {
         initComponents();
         this.history = history;
         cityCombobox.removeAllItems();
+        
         for(MainModel mainM : history.getHistory()){
                 cityCombobox.addItem(mainM.getCity());
                 
             }
-        displayHospital(cityCombobox.getSelectedIndex());
+        
+        ArrayList<MainModel> mainM = history.getHistory();
+            hospitalCombobox.removeAllItems();
+           
+            int Flag = 0;
+            int j = cityCombobox.getSelectedIndex();
+            for (int i =0;i<mainM.get(j).getHospitalArray().size();i++){
+                
+                hospitalCombobox.addItem(mainM.get(j).getHospitalArray().get(i).getHospitalName());
+
+            }
+            if(cityCombobox.getSelectedIndex()!=-1 && hospitalCombobox.getSelectedIndex()!=-1){
+        displayDoctor(cityCombobox.getSelectedIndex(),hospitalCombobox.getSelectedIndex());
+    }
     }
 
     /**
@@ -39,6 +54,7 @@ public class ManageHospitalPane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         cityCombobox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         hospitalTable = new javax.swing.JTable();
@@ -60,6 +76,7 @@ public class ManageHospitalPane extends javax.swing.JPanel {
         updateBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        hospitalCombobox = new javax.swing.JComboBox<>();
 
         cityCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cityCombobox.addActionListener(new java.awt.event.ActionListener() {
@@ -94,10 +111,10 @@ public class ManageHospitalPane extends javax.swing.JPanel {
         jLabel6.setText("Contact");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setText("UPDATE HOSPITAL");
+        jLabel7.setText("UPDATE DOCTOR");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setText("ADD NEW HOSPITAL");
+        jLabel8.setText("ADD NEW DOCTOR");
 
         addBtn.setText("ADD");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -122,58 +139,67 @@ public class ManageHospitalPane extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        hospitalCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        hospitalCombobox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hospitalComboboxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cityCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(hospitalCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(inpContact))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(inpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(inpName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 286, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(updateContact))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(updateAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(updateName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(45, 45, 45)
                                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,63 +207,143 @@ public class ManageHospitalPane extends javax.swing.JPanel {
                                 .addGap(96, 96, 96)))
                         .addGap(33, 33, 33))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(cityCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cityCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hospitalCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(inpName)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(inpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(inpContact, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(updateName)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(updateAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(updateContact, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(updateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                     .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(48, 48, 48))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 807, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 667, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void cityComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboboxActionPerformed
         if(cityCombobox.getSelectedIndex()!=-1){
-            displayHospital(cityCombobox.getSelectedIndex());
-        }
-        
-        
+            ArrayList<MainModel> mainM = history.getHistory();
+               hospitalCombobox.removeAllItems();
            
+            int Flag = 0;
+            int j = cityCombobox.getSelectedIndex();
+            for (int i =0;i<mainM.get(j).getHospitalArray().size();i++){
+                        
+
+                        hospitalCombobox.addItem(mainM.get(j).getHospitalArray().get(i).getHospitalName());
+
+
+            }
+            if(hospitalCombobox.getSelectedIndex()!=-1){
+                displayDoctor(cityCombobox.getSelectedIndex(),hospitalCombobox.getSelectedIndex());
+            }
+            
+        }
+
     }//GEN-LAST:event_cityComboboxActionPerformed
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        String Name = inpName.getText();
+//        String Address = inpAddress.getText();
+//        long Contact = Long.parseLong(inpContact.getText());
+        String City = (String) cityCombobox.getSelectedItem();
+        String Hospital = (String) hospitalCombobox.getSelectedItem();
+        int i = cityCombobox.getSelectedIndex();
+        int j = hospitalCombobox.getSelectedIndex();
+        ArrayList<MainModel> mainM = history.getHistory();
+
+//        System.out.println(mainM.size());
+        int Flag = 0;
+//        for(int i = 0;i<mainM.size();i++){
+            if(mainM.get(i).getCity() == cityCombobox.getSelectedItem().toString() && mainM.get(i).getHospitalArray().get(j).getHospitalName() == hospitalCombobox.getSelectedItem().toString()){
+                System.out.println(mainM.get(i).getCity());
+                mainM.get(i).getHospitalArray();
+                for(int k =0 ; k < mainM.get(i).getHospitalArray().size();k++){
+
+                    if(mainM.get(i).getHospitalArray().get(k).getHospitalName().equals(Name)){
+                        Flag = 1;
+
+                    }
+                }
+                if(Flag == 0){
+
+                    MainModel mainMo = mainM.get(i).getHospitalArray().get(j).addNewDoctor();
+                    System.out.println(Name);
+                    mainMo.setDoctorName(Name);
+//                    mainMo.setHospitalContact(Contact);
+//                    mainMo.setHospitalAddress(Address);
+//                    System.out.println(mainM.get(i).getHospitalArray().get(j).getDoctorArray().get(0).getDoctorName()+" "+i);
+                    displayDoctor(cityCombobox.getSelectedIndex(),hospitalCombobox.getSelectedIndex());
+
+                }
+                else{
+                    System.out.println("Hospital Already Exists");
+                }
+//                break;
+            }
+
+//        }
+
+    }//GEN-LAST:event_addBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
@@ -247,53 +353,20 @@ public class ManageHospitalPane extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-            String Name = inpName.getText();
-            String Address = inpAddress.getText();
-            long Contact = Long.parseLong(inpContact.getText());
-            String City = (String) cityCombobox.getSelectedItem();
+    private void hospitalComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalComboboxActionPerformed
+         if(cityCombobox.getSelectedIndex()!=-1 && hospitalCombobox.getSelectedIndex()!=-1){
+            displayDoctor(cityCombobox.getSelectedIndex(),hospitalCombobox.getSelectedIndex());
 
-            ArrayList<MainModel> mainM = history.getHistory();
-
-           
-            int Flag = 0;
-            for(int i = 0;i<mainM.size();i++){
-                if(mainM.get(i).getCity() == cityCombobox.getSelectedItem().toString()){
-                    
-                    for(int k =0 ; k < mainM.get(i).getHospitalArray().size();k++){
-
-                        if(mainM.get(i).getHospitalArray().get(k).getHospitalName().equals(Name)){
-                            Flag = 1;
-
-                        }
-                    }
-                    if(Flag == 0){
-
-                        MainModel mainMo = mainM.get(i).addNewHospital();
-                        mainMo.setHospitalName(Name);
-                        mainMo.setHospitalContact(Contact);
-                        mainMo.setHospitalAddress(Address);
-                        System.out.println(mainM.get(i).getHospitalArray().get(0).getHospitalName()+" "+i);
-                        displayHospital(cityCombobox.getSelectedIndex());
-
-                    }
-                    else{
-                        System.out.println("Hospital Already Exists");
-                    }
-                    break;
-                }
-
-            }
-        
-        
-
-    }//GEN-LAST:event_addBtnActionPerformed
+            
+        }
+    }//GEN-LAST:event_hospitalComboboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JComboBox<String> cityCombobox;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JComboBox<String> hospitalCombobox;
     private javax.swing.JTable hospitalTable;
     private javax.swing.JTextField inpAddress;
     private javax.swing.JTextField inpContact;
@@ -306,6 +379,7 @@ public class ManageHospitalPane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField updateAddress;
     private javax.swing.JButton updateBtn;
@@ -313,20 +387,20 @@ public class ManageHospitalPane extends javax.swing.JPanel {
     private javax.swing.JTextField updateName;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
-    private void displayHospital(int j) {
+    private void displayDoctor(int j,int k) {
         DefaultTableModel model = (DefaultTableModel) hospitalTable.getModel();
         model.setRowCount(0);
         ArrayList<MainModel> mainM = history.getHistory();
                
               
-        for (int i =0;i<mainM.get(j).getHospitalArray().size();i++){
+        for (int i =0;i<mainM.get(j).getHospitalArray().get(k).getDoctorArray().size();i++){
           if(mainM.get(j).getHospitalArray().get(i).getHospitalName() != null){
             Object[] row = new Object[3];
             row[0] = mainM;
-
-            row[0] = mainM.get(j).getHospitalArray().get(i).getHospitalName();
-            row[1] = mainM.get(j).getHospitalArray().get(i).getHospitalAddress();
-            row[2] = mainM.get(j).getHospitalArray().get(i).getHospitalContact();
+            
+            row[0] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorName();
+            row[1] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorName();
+            row[2] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorName();
             
 //            row[2] = MainM.getEmployeeID();
 //            row[3] = MainM.getAge();
@@ -346,6 +420,5 @@ public class ManageHospitalPane extends javax.swing.JPanel {
         
 
     }
-
 
 }
