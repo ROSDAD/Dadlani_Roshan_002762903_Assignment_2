@@ -60,6 +60,11 @@ public class SystemAdminPane extends javax.swing.JPanel {
         });
 
         jButton4.setText("PATIENTS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("COMMUNITY");
 
@@ -136,6 +141,10 @@ public class SystemAdminPane extends javax.swing.JPanel {
         ManageDoctorPane obj = new ManageDoctorPane(history);
         jSplitPane1.setRightComponent(obj);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

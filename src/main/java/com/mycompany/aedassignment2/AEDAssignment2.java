@@ -12,7 +12,7 @@ package com.mycompany.aedassignment2;
 public class AEDAssignment2 {
 
     public static void main(String[] args) {
-        MainPage obj = new MainPage();
-        obj.setVisible(true);
+        MainPageFrame frame = new MainPageFrame();
+        frame.setVisible(true);
     }
 }
