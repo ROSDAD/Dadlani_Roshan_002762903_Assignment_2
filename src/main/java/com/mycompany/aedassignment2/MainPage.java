@@ -77,6 +77,11 @@ public class MainPage extends javax.swing.JFrame {
         });
 
         jButton8.setText("COMMUNITY ADMIN");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("PATIENT");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +174,11 @@ public class MainPage extends javax.swing.JFrame {
         PatientOptionPane obj = new PatientOptionPane(history);
         jSplitPane1.setRightComponent(obj);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        CommunityOptionPane obj = new CommunityOptionPane(history);
+        jSplitPane1.setRightComponent(obj);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
