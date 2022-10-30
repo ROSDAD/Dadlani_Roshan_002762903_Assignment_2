@@ -17,9 +17,13 @@ public class MainModel {
       private String Gender;
       private String HospitalName;
       private String DoctorName;
+      private String PersonName;
+      private String PersonId;
+      private String PersonPass;
+      private String PersonRole;
+      
       private long HospitalContact;
       private String HospitalAddress;
-      private String Start_date;
       private String Level;
       private String City;
       private String Team_Info;
@@ -29,6 +33,7 @@ public class MainModel {
       private String Photo;
       private ArrayList<MainModel> hospitalArray = new ArrayList();
       private ArrayList<MainModel> DoctorArray = new ArrayList();
+      private ArrayList<MainModel> PersonArray = new ArrayList();
 
 
    
@@ -39,6 +44,38 @@ public class MainModel {
     }
     public ArrayList<MainModel> getHospitalArray() {
         return hospitalArray;
+    }
+    public MainModel addNewPerson(){
+        MainModel mainModel = new MainModel();
+        this.PersonArray.add(mainModel);
+        return mainModel;
+    }
+    public ArrayList<MainModel> getPersonArray() {
+        return PersonArray;
+    }
+    public void setPersonName(String PersonName) {
+        this.PersonName = PersonName;
+    }
+    public void setPersonRole(String PersonRole) {
+        this.PersonRole = PersonRole;
+    }
+    public void setPersonId(String PersonId) {
+        this.PersonId = PersonId;
+    }
+    public void setPersonPassword(String PersonPass) {
+        this.PersonPass = PersonPass;
+    }
+    public String getPersonName() {
+        return PersonName;
+    }
+    public String getPersonRole() {
+        return PersonRole;
+    }
+    public String getPersonUserId() {
+        return PersonId;
+    }
+    public String getPersonUserPass() {
+        return PersonPass;
     }
     public MainModel addNewDoctor(){
         MainModel mainModel = new MainModel();
