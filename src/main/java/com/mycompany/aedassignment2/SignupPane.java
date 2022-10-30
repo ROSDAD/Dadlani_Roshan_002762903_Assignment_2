@@ -4,10 +4,21 @@
  */
 package com.mycompany.aedassignment2;
 
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.List;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import model.MainHistory;
 import model.MainModel;
-
+import org.json.JSONObject;
+import org.json.JSONException;
+import java.io.File;
+import java.io.FileWriter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author rosha
@@ -129,6 +140,8 @@ public class SignupPane extends javax.swing.JPanel {
         int Flag = 0;
         ArrayList<MainModel> mainM = history.getHistory();
         ArrayList<MainModel> cityArray = new ArrayList();
+        ArrayList<JComponent> componentArray = new ArrayList();
+//         = new ArrayList();
         if(Pass.equals(CnfPass)){
             for(int i = 0; i < mainM.size();i++){
                 cityArray = mainM.get(i).getPersonArray();
@@ -142,7 +155,49 @@ public class SignupPane extends javax.swing.JPanel {
             }
         }
             if(Flag == 0){
-                SystemAdminPane obj = new SystemAdminPane(history);
+             
+        String key = "key1"; //whatever
+
+        JSONObject jo = new JSONObject("{key1:\"val1\", key2:\"val2\"}");
+        //Read from file
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject root= (JSON) "{'key1':'Keys'}";
+                try {
+                    root = mapper.readValue(new File("json_file"), JSONObject.class);
+                } catch (IOException ex) {
+                    Logger.getLogger(SignupPane.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+        String val_newer = jo.getString(key);
+        String val_older = root.getString(key);
+                System.out.println(val_older);
+        //Compare values
+        if(!val_newer.equals(val_older))
+        {
+          //Update value in object
+           root.put(key,val_newer);
+
+           //Write into the file
+            try (FileWriter file = new FileWriter("json_file")) 
+            {
+                file.write(root.toString());
+                
+                System.out.println("Successfully updated json object to file...!!");
+            } catch (IOException ex) {
+                Logger.getLogger(SignupPane.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+//                MainPage mainF = new MainPage();
+//                SystemAdminPane obj = new SystemAdminPane(history);
+////                SystemAdminPane obj1 = new SystemAdminPane(history);
+//                mainF.show();
+//                Component[] comps = obj1.getComponents();
+//                for(Component comp : comps) {
+//                if(comp instanceof JComponent) {
+//                     componentArray.add((JComponent) comp);
+//                     System.out.println((JComponent) comp);
+//                }
+//           }
 //                jSplitPane1.setRightComponent(obj):
                 System.out.println("PersonAdded");
             }
@@ -166,4 +221,14 @@ public class SignupPane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
+public static ArrayList<Component> getAllComponents(final Container c) {
+    Component[] comps = c.getComponents();
+    ArrayList<Component> compList = new ArrayList<Component>();
+    for (Component comp : comps) {
+        compList.add(comp);
+        if (comp instanceof Container)
+            compList.addAll(getAllComponents((Container) comp));
+    }
+    return compList;
+}
 }
