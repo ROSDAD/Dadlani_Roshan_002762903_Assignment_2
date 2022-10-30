@@ -34,8 +34,23 @@ public class MainHistory {
         
         
     }
-
-   
+    public MainModel addNewPerson(){
+        
+        MainModel newMainModel = new MainModel();
+        history.add(newMainModel);
+        return newMainModel;
+        
+        
+    }
+    public MainModel addNewSession(){
+        MainModel mainModel = new MainModel();
+        history.add(mainModel);
+        return mainModel;
+    }
+//   public void removeSession(MainModel mainmod){
+//       history.remove(mainmod);
+//        
+//    }
     public void deleteEmployee(MainModel mainmod){
        history.remove(mainmod);
         

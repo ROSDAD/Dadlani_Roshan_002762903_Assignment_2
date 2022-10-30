@@ -17,20 +17,28 @@ import java.io.File;
 import java.io.FileWriter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.google.gson.Gson;
+import javax.swing.JSplitPane;
 /**
  *
  * @author rosha
  */
 public class SignupPane extends javax.swing.JPanel {
     MainHistory history;
+    JSplitPane jSplitPane2;
+    int cityArraySize;
     /**
      * Creates new form SignupPage
      */
-    public SignupPane(MainHistory history) {
+    public SignupPane(MainHistory history,JSplitPane jSplitPane1,int cityArraySize) {
         initComponents();
         this.history = history;
+        this.jSplitPane2 = jSplitPane1;
+        this.cityArraySize = cityArraySize;
     }
 
     /**
@@ -140,13 +148,13 @@ public class SignupPane extends javax.swing.JPanel {
         int Flag = 0;
         ArrayList<MainModel> mainM = history.getHistory();
         ArrayList<MainModel> cityArray = new ArrayList();
-        ArrayList<JComponent> componentArray = new ArrayList();
+        
 //         = new ArrayList();
         if(Pass.equals(CnfPass)){
             for(int i = 0; i < mainM.size();i++){
                 cityArray = mainM.get(i).getPersonArray();
                 for (int j = 0;j<cityArray.size();j++ ){
-                    if(cityArray.get(j).getPersonUserId() == UserId){
+                    if(cityArray.get(j).getPersonId() == UserId){
                         System.out.println("User Already Exists");
                         Flag = 1;
                         break;
@@ -155,50 +163,64 @@ public class SignupPane extends javax.swing.JPanel {
             }
         }
             if(Flag == 0){
-             
-        String key = "key1"; //whatever
-
-        JSONObject jo = new JSONObject("{key1:\"val1\", key2:\"val2\"}");
-        //Read from file
-        ObjectMapper mapper = new ObjectMapper();
-        JSONObject root= (JSON) "{'key1':'Keys'}";
-                try {
-                    root = mapper.readValue(new File("json_file"), JSONObject.class);
-                } catch (IOException ex) {
-                    Logger.getLogger(SignupPane.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-        String val_newer = jo.getString(key);
-        String val_older = root.getString(key);
-                System.out.println(val_older);
-        //Compare values
-        if(!val_newer.equals(val_older))
-        {
-          //Update value in object
-           root.put(key,val_newer);
-
-           //Write into the file
-            try (FileWriter file = new FileWriter("json_file")) 
-            {
-                file.write(root.toString());
+                MainModel mainMo = history.addNewPerson();
+                mainMo.setPersonName(Name);
+                mainMo.setPersonRole("Patient");
+                mainMo.setPersonId(UserId);
+                mainMo.setPersonPassword(Pass);
+                MainModel mainModel = history.addNewSession();
+                mainModel.setSessionName(Name);
+                mainModel.setSessionRole("Patient");
+                mainModel.setSessionId(UserId);
+                mainModel.setSessionPass(Pass);
                 
-                System.out.println("Successfully updated json object to file...!!");
-            } catch (IOException ex) {
-                Logger.getLogger(SignupPane.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-//                MainPage mainF = new MainPage();
-//                SystemAdminPane obj = new SystemAdminPane(history);
-////                SystemAdminPane obj1 = new SystemAdminPane(history);
-//                mainF.show();
-//                Component[] comps = obj1.getComponents();
-//                for(Component comp : comps) {
-//                if(comp instanceof JComponent) {
-//                     componentArray.add((JComponent) comp);
-//                     System.out.println((JComponent) comp);
+                
+                PatientOptionPane obj = new PatientOptionPane(history,jSplitPane2);
+                jSplitPane2.setRightComponent(obj);
+                LogoutPane obj1 = new LogoutPane(history,jSplitPane2,cityArraySize);
+                jSplitPane2.setLeftComponent(obj1);
+//                ArrayList<MainModel> mainMod = history.getHistory();
+                
+//                String json = new Gson().toJson(mainMod);
+//                System.out.println(json);
+//                Gson gson = new Gson();
+//                MainModel mainModel = gson.fromJson(json,MainModel.class);
+//                System.out.println(mainModel);
+//                System.out.println();
+//                System.out.println(ArrayListToHashMap(mainM));   
+//        String key = "key1"; //whatever
+//
+//        JSONObject jo = new JSONObject("{key1:\"val1\"}");
+//        //Read from file
+//        ObjectMapper mapper = new ObjectMapper();
+//        JSONObject root = null;
+//                try {
+//                    root = mapper.readValue(new File("E:\\JAVA\\aedass2dummy-main\\src\\main\\java\\com\\mycompany\\aedassignment2\\json_file.json"), JSONObject.class);
+//                } catch (IOException ex) {
+//                    Logger.getLogger(SignupPane.class.getName()).log(Level.SEVERE, null, ex);
 //                }
-//           }
-//                jSplitPane1.setRightComponent(obj):
+//
+//        String val_newer = jo.getString(key);
+//        String val_older = root.getString(key);
+//                System.out.println(val_older);
+//        //Compare values
+//        if(!val_newer.equals(val_older))
+//        {
+//            System.out.println(root.toString());
+//          //Update value in object
+//           root.put(key,val_newer);
+//
+//           //Write into the file
+//            try (FileWriter file = new FileWriter("E:\\JAVA\\aedass2dummy-main\\src\\main\\java\\com\\mycompany\\aedassignment2\\json_file.json")) 
+//            {
+//                file.write(root.toString());
+//                file.flush();
+//                System.out.println("Successfully updated json object to file...!!"+root.toString());
+//            } catch (IOException ex) {
+//                Logger.getLogger(SignupPane.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+
                 System.out.println("PersonAdded");
             }
         }
@@ -230,5 +252,20 @@ public static ArrayList<Component> getAllComponents(final Container c) {
             compList.addAll(getAllComponents((Container) comp));
     }
     return compList;
+}
+
+public static HashMap<String, Object> ArrayListToHashMap(ArrayList<MainModel> arrayList) {
+    HashMap<String, Object> hashMap = new HashMap<>();
+//        ArrayList<MainModel> mainM = history.getHistory();
+               
+        for(int i =0 ; i<arrayList.size();i++){
+            hashMap.put("cityArray",arrayList.get(i).getCity());
+        }
+//        for (int i =0;i<mainM.get(j).getHospitalArray().get(k).getDoctorArray().size();i++){
+//  
+//            hashMap.put(str, str.getHospitalArray());
+//        }
+  
+        return hashMap;
 }
 }

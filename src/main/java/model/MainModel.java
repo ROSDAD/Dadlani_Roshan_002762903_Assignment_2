@@ -11,8 +11,10 @@ import java.util.ArrayList;
  * @author Admin
  */
 public class MainModel {
+    
+    
       private String Name;
-      private int EmployeeID;
+      
       private int Age;    
       private String Gender;
       private String HospitalName;
@@ -21,22 +23,52 @@ public class MainModel {
       private String PersonId;
       private String PersonPass;
       private String PersonRole;
+      private String SessionPass;
+      private String SessionRole;
+      private String SessionId;
+      private String SessionName;
       
       private long HospitalContact;
       private String HospitalAddress;
-      private String Level;
+      
       private String City;
-      private String Team_Info;
-      private String Position_title;
-      private Long Cell_phone_number;  //2
-      private String Email_address;
-      private String Photo;
+      
       private ArrayList<MainModel> hospitalArray = new ArrayList();
       private ArrayList<MainModel> DoctorArray = new ArrayList();
       private ArrayList<MainModel> PersonArray = new ArrayList();
+      private ArrayList<MainModel> sessionArray = new ArrayList();
+      
 
 
-   
+   public MainModel addNewSession(){
+        MainModel mainModel = new MainModel();
+        this.sessionArray.add(mainModel);
+        return mainModel;
+    }
+   public void setSessionName(String SessionName) {
+        this.SessionName = SessionName;
+    }
+   public void setSessionId(String SessionId) {
+        this.SessionId = SessionId;
+    }
+   public void setSessionPass(String SessionPass) {
+        this.SessionPass = SessionPass;
+    }
+   public void setSessionRole(String SessionRole) {
+        this.SessionRole = SessionRole;
+    }
+   public String getSessionName() {
+        return SessionName;
+    }
+    public String getSessionRole() {
+        return SessionRole;
+    }
+    public String getSessionId() {
+        return SessionId;
+    }
+    public String getSessionPassword() {
+        return SessionPass;
+    }
     public MainModel addNewHospital(){
         MainModel mainModel = new MainModel();
         this.hospitalArray.add(mainModel);
@@ -71,10 +103,10 @@ public class MainModel {
     public String getPersonRole() {
         return PersonRole;
     }
-    public String getPersonUserId() {
+    public String getPersonId() {
         return PersonId;
     }
-    public String getPersonUserPass() {
+    public String getPersonPassword() {
         return PersonPass;
     }
     public MainModel addNewDoctor(){
@@ -104,6 +136,7 @@ public class MainModel {
     public long getHospitalContact() {
         return HospitalContact;
     }
+    
     public void setHospitalAddress(String HospitalAddress) {
         
         this.HospitalAddress = HospitalAddress;

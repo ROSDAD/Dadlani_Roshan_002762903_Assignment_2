@@ -4,6 +4,7 @@
  */
 package com.mycompany.aedassignment2;
 
+import javax.swing.JSplitPane;
 import model.MainHistory;
 
 /**
@@ -12,11 +13,15 @@ import model.MainHistory;
  */
 public class CommunityOptionPane extends javax.swing.JPanel {
     MainHistory history;
+    JSplitPane jSplitPane2;
+    
     /**
      * Creates new form CommunityOptionPane
      */
-    public CommunityOptionPane(MainHistory history) {
+    public CommunityOptionPane(MainHistory history, JSplitPane jSplitPane) {
         initComponents();
+        this.history = history;
+        this.jSplitPane2 = jSplitPane;
     }
 
     /**

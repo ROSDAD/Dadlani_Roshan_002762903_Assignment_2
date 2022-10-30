@@ -4,6 +4,7 @@
  */
 package com.mycompany.aedassignment2;
 
+import javax.swing.JSplitPane;
 import model.MainHistory;
 
 /**
@@ -15,7 +16,7 @@ public class SystemAdminPane extends javax.swing.JPanel {
     /**
      * Creates new form SystemAdminPane
      */
-    public SystemAdminPane(MainHistory history) {
+    public SystemAdminPane(MainHistory history,JSplitPane jSplitPane1) {
         initComponents();
         this.history = history;
     }

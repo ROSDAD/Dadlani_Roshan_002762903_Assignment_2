@@ -5,6 +5,7 @@
 package com.mycompany.aedassignment2;
 
 import java.util.ArrayList;
+import javax.swing.JSplitPane;
 import model.MainHistory;
 import model.MainModel;
 
@@ -14,12 +15,14 @@ import model.MainModel;
  */
 public class PatientOptionPane extends javax.swing.JPanel {
     MainHistory history;
+    JSplitPane jSplitPane2;
     /**
      * Creates new form PatientOptionPane
      */
-    public PatientOptionPane(MainHistory history) {
+    public PatientOptionPane(MainHistory history, JSplitPane jSplitPane1) {
         initComponents();
         this.history = history;
+        this.jSplitPane2 = jSplitPane1;
         cityCombobox.removeAllItems();
         hospitalCombobox.removeAllItems();
         

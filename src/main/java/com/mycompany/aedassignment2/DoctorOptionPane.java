@@ -4,17 +4,23 @@
  */
 package com.mycompany.aedassignment2;
 
+import javax.swing.JSplitPane;
+import model.MainHistory;
+
 /**
  *
  * @author rosha
  */
 public class DoctorOptionPane extends javax.swing.JPanel {
-
+    MainHistory history;
+    JSplitPane jSplitPane2;
     /**
      * Creates new form DoctorOptionPane
      */
-    public DoctorOptionPane() {
+    public DoctorOptionPane(MainHistory history, JSplitPane jSplitPane1 ) {
         initComponents();
+        this.history = history;
+        this.jSplitPane2 = jSplitPane1;
     }
 
     /**
