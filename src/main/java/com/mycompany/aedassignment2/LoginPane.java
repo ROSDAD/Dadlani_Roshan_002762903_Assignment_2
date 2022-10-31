@@ -134,7 +134,7 @@ public class LoginPane extends javax.swing.JPanel {
                             mainModel.setSessionRole(mainM.get(i).getPersonRole());
                             mainModel.setSessionId(mainM.get(i).getPersonId());
                             mainModel.setSessionPass(mainM.get(i).getPersonPassword());
-                            DoctorOptionPane obj = new DoctorOptionPane(history,jSplitPane2);
+                            DoctorOptionPane obj = new DoctorOptionPane(history,jSplitPane2,mainM.get(i).getPersonId());
                             jSplitPane2.setRightComponent(obj);
                         }
                         if(mainM.get(i).getPersonRole() == "CommunityAdmin"){

@@ -38,6 +38,15 @@ public class MainModel {
       private String appointmentAddress;
       private String appointmentReason;
       private String appointmentComment;
+      private String appointmentBP;
+      private String appointmentBodyTemp;
+      private String appointmentHeartRate;
+      private String appointmentRespiration;
+      private String appointmentHeight;
+      private String appointmentWeight;
+      private String appointmentGender;
+      
+      
       
       private long HospitalContact;
       private String HospitalAddress;
@@ -93,6 +102,52 @@ public class MainModel {
    public String getAppointmentUserId() {
         return appointmentUserId;
     }
+   public void setAppointmentBP(String AppointmentBP) {
+        this.appointmentBP = AppointmentBP;
+    }
+   public String getAppointmentBP() {
+        return appointmentBP;
+    }
+   
+   public void setAppointmentBodyTemp(String AppointmentBodyTemp) {
+        this.appointmentBodyTemp = AppointmentBodyTemp;
+    }
+   public String getAppointmentBodyTemp() {
+        return appointmentBodyTemp;
+    }
+   public void setAppointmentHeartRate(String AppointmentHeartRate) {
+        this.appointmentHeartRate = AppointmentHeartRate;
+    }
+   public String getAppointmentHeartRate() {
+        return appointmentHeartRate;
+    }
+   public void setAppointmentRespiration(String AppointmentRespiration) {
+        this.appointmentRespiration = AppointmentRespiration;
+    }
+   public String getAppointmentRespiration() {
+        return appointmentRespiration;
+    }
+   public void setAppointmentHeight(String AppointmentHeight) {
+        this.appointmentHeight = AppointmentHeight;
+    }
+   public String getAppointmentHeight() {
+        return appointmentHeight;
+    }
+   public void setAppointmentGender(String AppointmentGender) {
+        this.appointmentGender = AppointmentGender;
+    }
+   public String getAppointmentGender() {
+        return appointmentGender;
+    }
+   public void setAppointmentWeight(String AppointmentWeight) {
+        this.appointmentWeight = AppointmentWeight;
+    }
+   public String getAppointmentWeight() {
+        return appointmentWeight;
+    }
+   
+   
+   
    public String getAppointmentDate() {
         return appointmentDate;
     }

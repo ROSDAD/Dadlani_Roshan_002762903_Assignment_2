@@ -4,8 +4,11 @@
  */
 package com.mycompany.aedassignment2;
 
+import java.util.ArrayList;
 import javax.swing.JSplitPane;
+import javax.swing.table.DefaultTableModel;
 import model.MainHistory;
+import model.MainModel;
 
 /**
  *
@@ -35,7 +38,7 @@ public class CommunityOptionPane extends javax.swing.JPanel {
 
         cityCombobox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        hospitalTable = new javax.swing.JTable();
+        communityTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -58,18 +61,18 @@ public class CommunityOptionPane extends javax.swing.JPanel {
             }
         });
 
-        hospitalTable.setModel(new javax.swing.table.DefaultTableModel(
+        communityTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "NAME", "ADDRESS", "CONTACT"
+                "NAME", "ADDRESS", "CONTACT", "DOB", "GENDER"
             }
         ));
-        jScrollPane1.setViewportView(hospitalTable);
+        jScrollPane1.setViewportView(communityTable);
 
         jLabel1.setText("Name");
 
@@ -108,20 +111,20 @@ public class CommunityOptionPane extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(338, 338, 338)
-                .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cityCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 480, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cityCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(126, 489, Short.MAX_VALUE))))
+                        .addGap(338, 338, 338)
+                        .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(270, 270, 270)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -148,9 +151,8 @@ public class CommunityOptionPane extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(inpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(inpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,9 +161,9 @@ public class CommunityOptionPane extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cityCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,7 +263,7 @@ public class CommunityOptionPane extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JComboBox<String> cityCombobox;
-    private javax.swing.JTable hospitalTable;
+    private javax.swing.JTable communityTable;
     private javax.swing.JTextField inpAddress;
     private javax.swing.JTextField inpContact;
     private javax.swing.JTextField inpContact1;
@@ -277,4 +279,29 @@ public class CommunityOptionPane extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
+private void displayCommunity(int j,int k) {
+        DefaultTableModel model = (DefaultTableModel) communityTable.getModel();
+        model.setRowCount(0);
+        ArrayList<MainModel> mainM = history.getHistory();
+               
+              
+        for (int i =0;i<mainM.get(j).getHospitalArray().get(k).getDoctorArray().size();i++){
+          if(mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorName() != null){
+            Object[] row = new Object[3];
+            
+            
+            row[0] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorName();
+            row[1] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorAddress();
+            row[2] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorContact();
+            
+
+
+            model.addRow(row);
+           
+            }
+        }
+        
+
+    }
+
 }
