@@ -15,10 +15,15 @@ import model.MainModel;
 public class MainPageFrame extends javax.swing.JFrame {
     MainHistory history;
     String[] cityarray = {"Boston","New York","Los Angeles"};
-    String[] userId = {"admin","patient1","patient2","doctor1","doctor2","community1","community2","hospitaladmin1"};
-    String[] userName = {"admin","patient1","patient2","doctor1","doctor2","community1","community2","hospitaladmin1"};
-    String[] userPass = {"12345","12345","12345","12345","12345","12345","12345","12345"};
-    String[] userRole = {"SystemAdmin","Patient","Patient","Doctor","Doctor","CommunityAdmin","CommunityAdmin","HospitalAdmin"};
+    String[] userId = {"admin","patient1","patient2","doctor1","doctor2","community1","community2","hospitaladmin1","hospitaladmin2"};
+    String[] userName = {"admin","patient1","patient2","doctor1","doctor2","community1","community2","hospitaladmin1","hospitaladmin2"};
+    String[] userPass = {"12345","12345","12345","12345","12345","12345","12345","12345","12345"};
+    String[] userRole = {"SystemAdmin","Patient","Patient","Doctor","Doctor","CommunityAdmin","CommunityAdmin","HospitalAdmin","HospitalAdmin"};
+    String[] HospitalArray = {"Fortis Hospital","Apollo Hospital","Leelavati Hospital"};
+    String[] doctorCityArray = {"Boston","New York"};
+    String[] doctorHospitalArray = {"Fortis Hospital","Apollo Hospital"};
+    String[] HospitaladminArray = {"Fortis Hospital","Apollo Hospital"};
+    
     /**
      * Creates new form MainLoginPage
      */
@@ -33,13 +38,41 @@ public class MainPageFrame extends javax.swing.JFrame {
 //            
 //            System.out.println(mainM);
         }
+        int Hospitaladmincount = 1;
+        for(int i = 0 ; i< HospitalArray.length ; i++){
+            ArrayList<MainModel> MainMo = history.getHistory();
+            MainModel mainmodel = MainMo.get(i).addNewHospital();
+            mainmodel.setHospitalName(HospitalArray[i]);
+            for(int k = 0; k<userId.length;k++){
+                if(userRole[i].equals("CommunityAdmin")){
+                mainmodel.setHospitalAdmin(userId[k]);
+                Hospitaladmincount++;
+            }
+            }
+            
+        }
+        int DoctorCount = 0;
         for(int i = 0;i<userId.length;i++){
-//            ArrayList<MainModel> MainMod = history.getHistory();
+            ArrayList<MainModel> MainMo = history.getHistory();
             MainModel MainMod = history.addNewPerson();
             MainMod.setPersonId(userId[i]);
             MainMod.setPersonName(userName[i]);
             MainMod.setPersonPassword(userPass[i]);
             MainMod.setPersonRole(userRole[i]);
+            if(userRole[i] == "Doctor"){
+                
+                int z = findIndex(cityarray,doctorCityArray[DoctorCount]);
+                for(int t = 0;t<MainMo.get(z).getHospitalArray().size();t++ ){
+                    if(MainMo.get(findIndex(cityarray,doctorCityArray[DoctorCount])).getHospitalArray().get(t).getHospitalName().equals(doctorHospitalArray[DoctorCount])){
+                MainModel mainmodel = MainMo.get(findIndex(cityarray,doctorCityArray[DoctorCount])).getHospitalArray().get(t).addNewDoctor();
+                mainmodel.setDoctorName(userName[i]);
+                mainmodel.setDoctorUserId(userId[i]);
+                DoctorCount ++ ;
+                }
+                }
+                
+            }
+            
             
         }
       
@@ -204,4 +237,30 @@ public class MainPageFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
+public static int findIndex(String[] arr, String t)
+    {
+  
+        // if array is Null
+        if (arr == null) {
+            return -1;
+        }
+  
+        // find length of array
+        int len = arr.length;
+        int i = 0;
+  
+        // traverse in the array
+        while (i < len) {
+  
+            // if the i-th element is t
+            // then return the index
+            if (arr[i].equals(t)) {
+                return i;
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        return -1;
+    }
 }

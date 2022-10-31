@@ -6,6 +6,7 @@ package com.mycompany.aedassignment2;
 
 import java.util.ArrayList;
 import javax.swing.JSplitPane;
+import javax.swing.table.DefaultTableModel;
 import model.MainHistory;
 import model.MainModel;
 
@@ -79,21 +80,23 @@ public class PatientOptionPane extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        updatePatient = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        createAppointment = new javax.swing.JButton();
+        inpName = new javax.swing.JTextField();
+        inpDob = new javax.swing.JTextField();
+        inpContact = new javax.swing.JTextField();
+        inpAddress = new javax.swing.JTextField();
+        inpDate = new javax.swing.JTextField();
         cityCombobox = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         hospitalCombobox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         doctorCombobox = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        inpReason = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        encounterTable = new javax.swing.JTable();
+        appointmentTable = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -106,13 +109,18 @@ public class PatientOptionPane extends javax.swing.JPanel {
 
         jLabel5.setText("ADDRESS:");
 
-        jLabel6.setText("DATE (DISABLE)");
+        jLabel6.setText("DATE");
 
-        updatePatient.setText("CREATE APPOINTMENT");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        createAppointment.setText("CREATE APPOINTMENT");
+        createAppointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                createAppointmentActionPerformed(evt);
+            }
+        });
+
+        inpName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inpNameActionPerformed(evt);
             }
         });
 
@@ -146,6 +154,8 @@ public class PatientOptionPane extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setText("SELECT DOCTOR");
 
+        jLabel8.setText("REASON");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -172,18 +182,20 @@ public class PatientOptionPane extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(inpDate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inpContact, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inpDob, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inpName, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inpReason, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 402, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(302, 302, 302)
-                .addComponent(updatePatient)
+                .addGap(298, 298, 298)
+                .addComponent(createAppointment)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -201,45 +213,49 @@ public class PatientOptionPane extends javax.swing.JPanel {
                     .addComponent(doctorCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inpName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inpDob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inpContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inpDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(updatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(398, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inpReason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addComponent(createAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(323, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel3);
 
         jScrollPane2.setBackground(new java.awt.Color(0, 153, 153));
 
-        encounterTable.setModel(new javax.swing.table.DefaultTableModel(
+        appointmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "UID", "NAME", "DOB", "DATE", "REASON", "COMMENT"
+                "NAME", "DOB", "DATE", "DOCTOR", "HOSPITAL", "CITY", "REASON", "COMMENT"
             }
         ));
-        jScrollPane2.setViewportView(encounterTable);
+        jScrollPane2.setViewportView(appointmentTable);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("YOUR APPOINTMENTS");
@@ -284,9 +300,9 @@ public class PatientOptionPane extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void inpNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_inpNameActionPerformed
 
     private void cityComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboboxActionPerformed
             ArrayList<MainModel> mainM = history.getHistory();
@@ -320,7 +336,7 @@ public class PatientOptionPane extends javax.swing.JPanel {
         int k = hospitalCombobox.getSelectedIndex();
             if(k!=-1){
             for (int i =0;i<mainM.get(j).getHospitalArray().get(k).getDoctorArray().size();i++){
-                System.out.println("AUR ANDAR");
+               
                 doctorCombobox.addItem(mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorName());
 
             }
@@ -332,12 +348,76 @@ public class PatientOptionPane extends javax.swing.JPanel {
         
     }//GEN-LAST:event_doctorComboboxActionPerformed
 
+    private void createAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAppointmentActionPerformed
+                // TODO add your handling code here:
+                String UserId = "";
+                ArrayList<MainModel> mainM = history.getHistory();
+                for(int i =0;i<mainM.size();i++){
+                    if(mainM.get(i).getSessionName()!=null){
+                        UserId = mainM.get(i).getSessionId();
+                    }
+                }
+                String Name = inpName.getText();
+                String DOB = inpDob.getText(); 
+                String Contact = inpContact.getText();
+                String Address = inpAddress.getText();
+                String Date = inpDate.getText();
+                String Reason = inpReason.getText();
+                if(Name != "" && DOB != "" && Contact != "" && Address != "" && Date != "" && Reason != ""){
+                    int i = cityCombobox.getSelectedIndex();
+                    int j = hospitalCombobox.getSelectedIndex();
+                    int k = doctorCombobox.getSelectedIndex();
+                    
+
+//        System.out.println(mainM.size());
+        int Flag = 0;
+//        for(int i = 0;i<mainM.size();i++){
+            if(mainM.get(i).getCity() == cityCombobox.getSelectedItem().toString() && mainM.get(i).getHospitalArray().get(j).getHospitalName() == hospitalCombobox.getSelectedItem().toString() && mainM.get(i).getHospitalArray().get(j).getDoctorArray().get(k).getDoctorName() == doctorCombobox.getSelectedItem().toString()){
+                System.out.println("IDHR TAK TO POHOCH GAYA");
+                for(int z=0;z<mainM.get(i).getHospitalArray().get(j).getDoctorArray().get(k).getAppointmentArray().size();z++){
+                    if(mainM.get(i).getHospitalArray().get(j).getDoctorArray().get(k).getAppointmentArray().get(z).getAppointmentUserId().equals(UserId)){
+                        if(mainM.get(i).getHospitalArray().get(j).getDoctorArray().get(k).getAppointmentArray().get(z).getAppointmentDate().equals(Date)){
+                            Flag =1;
+                        }
+                    }
+                }
+                
+                if(Flag == 0){
+
+                    MainModel mainMo = mainM.get(i).getHospitalArray().get(j).getDoctorArray().get(k).addNewAppointment();
+                    
+                    mainMo.setAppointmentUserId(UserId);
+                    mainMo.setAppointmentName(Name);
+                    mainMo.setAppointmentContact(Contact);
+                    mainMo.setAppointmentAddress(Address);
+                    mainMo.setAppointmentDob(DOB);
+                    mainMo.setAppointmentDate(Date);
+                    mainMo.setAppointmentReason(Reason);
+
+                    displayAppointment(UserId);
+                    System.out.println("ADD KIYA");
+                }
+                else{
+                    System.out.println("Appointment on this Date with this doctor has already been made");
+                }
+//                break;
+            }
+                }
+    }//GEN-LAST:event_createAppointmentActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable appointmentTable;
     private javax.swing.JComboBox<String> cityCombobox;
+    private javax.swing.JButton createAppointment;
     private javax.swing.JComboBox<String> doctorCombobox;
-    private javax.swing.JTable encounterTable;
     private javax.swing.JComboBox<String> hospitalCombobox;
+    private javax.swing.JTextField inpAddress;
+    private javax.swing.JTextField inpContact;
+    private javax.swing.JTextField inpDate;
+    private javax.swing.JTextField inpDob;
+    private javax.swing.JTextField inpName;
+    private javax.swing.JTextField inpReason;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
@@ -347,15 +427,41 @@ public class PatientOptionPane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JButton updatePatient;
     // End of variables declaration//GEN-END:variables
+    private void displayAppointment(String UserId) {
+        DefaultTableModel model = (DefaultTableModel) appointmentTable.getModel();
+        model.setRowCount(0);
+        ArrayList<MainModel> mainM = history.getHistory();
+        for(int i =0;i<mainM.size();i++){
+            for(int q =0 ;q<mainM.get(i).getHospitalArray().size();q++){
+                for(int w =0;w<mainM.get(i).getHospitalArray().get(q).getDoctorArray().size();w++){
+                    for(int e =0 ;e<mainM.get(i).getHospitalArray().get(q).getDoctorArray().get(w).getAppointmentArray().size();e++){
+                        if(mainM.get(i).getHospitalArray().get(q).getDoctorArray().get(w).getAppointmentArray().get(e).getAppointmentUserId().equals( UserId)){
+                        Object[] row = new Object[8];
+                            System.out.println("ADD to kiya");
+
+                        row[0] = mainM.get(i).getHospitalArray().get(q).getDoctorArray().get(w).getAppointmentArray().get(e).getAppointmentName();
+                        row[1] = mainM.get(i).getHospitalArray().get(q).getDoctorArray().get(w).getAppointmentArray().get(e).getAppointmentDob();
+                        row[2] = mainM.get(i).getHospitalArray().get(q).getDoctorArray().get(w).getAppointmentArray().get(e).getAppointmentDate();
+                        row[3] = mainM.get(i).getHospitalArray().get(q).getDoctorArray().get(w).getDoctorName();
+                        row[4] = mainM.get(i).getHospitalArray().get(q).getHospitalName();
+                        row[5] = mainM.get(i).getCity();
+                        row[6] = mainM.get(i).getHospitalArray().get(q).getDoctorArray().get(w).getAppointmentArray().get(e).getAppointmentReason();
+                        row[7] = mainM.get(i).getHospitalArray().get(q).getDoctorArray().get(w).getAppointmentArray().get(e).getAppointmentComment();
+                        model.addRow(row);
+                        }
+                    }
+                }
+            }
+        }
+              
+        
+        
+
+    }
 }
