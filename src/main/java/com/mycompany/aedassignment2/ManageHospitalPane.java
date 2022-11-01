@@ -7,6 +7,7 @@ package com.mycompany.aedassignment2;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.HospitalAction;
 import model.MainHistory;
 
 import model.MainModel;
@@ -63,6 +64,8 @@ public class ManageHospitalPane extends javax.swing.JPanel {
         viewBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(0, 204, 255));
 
         cityCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cityCombobox.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +278,26 @@ public class ManageHospitalPane extends javax.swing.JPanel {
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
+        int selectedRowIndex = hospitalTable.getSelectedRow();
+        if (selectedRowIndex<0) {
+            JOptionPane.showMessageDialog(this, "Select a row to delete.");
+            return;
+        }
+       
+        DefaultTableModel model = (DefaultTableModel) hospitalTable.getModel();
+
+        int cityIndex = cityCombobox.getSelectedIndex();
+        
+        ArrayList<MainModel> mainM = history.getHistory();
+        
+    //        ArrayList<MainModel> mainM = history.getHistory();
+//        history.deleteDoctor();
+            mainM.get(cityIndex).getHospitalArray().get(selectedRowIndex).deleteHospital(cityIndex,selectedRowIndex,history);
+//        MainModel mainModel = mainM.get(cityIndex).getHospitalArray().get(hospitalIndex).getDoctorArray().get(selectedRowIndex).remove(cityIndex,hospitalIndex,selectedRowIndex);
+        displayHospital(cityIndex);
+//        model.removeRow(doctorTable.getSelectedRow());
+        JOptionPane.showMessageDialog(this, "Hospital deleted.");
+                // TODO add your handling code here:
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
@@ -303,7 +325,7 @@ public class ManageHospitalPane extends javax.swing.JPanel {
                     }
                     if(Flag == 0){
 
-                        MainModel mainMo = mainM.get(i).addNewHospital();
+                        HospitalAction mainMo = mainM.get(i).addNewHospital();
                         mainMo.setHospitalName(Name);
                         mainMo.setHospitalContact(Contact);
                         mainMo.setHospitalAddress(Address);

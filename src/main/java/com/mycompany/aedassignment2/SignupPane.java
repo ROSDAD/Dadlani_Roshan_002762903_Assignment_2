@@ -22,7 +22,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gson.Gson;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+
 /**
  *
  * @author rosha
@@ -79,6 +81,8 @@ public class SignupPane extends javax.swing.JPanel {
         inpGender = new javax.swing.JTextField();
         inpPass = new javax.swing.JPasswordField();
         inpCnfPass = new javax.swing.JPasswordField();
+
+        setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel1.setText("Create USER ID:");
 
@@ -225,15 +229,18 @@ public class SignupPane extends javax.swing.JPanel {
                 cityArray = mainM.get(i).getPersonArray();
                 for (int j = 0;j<cityArray.size();j++ ){
                     if(cityArray.get(j).getPersonId() == UserId){
-                        System.out.println("User Already Exists");
+                        JOptionPane.showMessageDialog(this, "USER ALREADY EXISTS");
                         Flag = 1;
-                        break;
+                        return;
+                        
+                     
                     }
                     
             }
         }
             if(Flag == 0){
                 MainModel mainMo = history.addNewPerson();
+//                MainModel mainMo = history.addNewPerson();
                 mainMo.setPersonName(Name);
                 mainMo.setPersonRole("Patient");
                 mainMo.setPersonId(UserId);

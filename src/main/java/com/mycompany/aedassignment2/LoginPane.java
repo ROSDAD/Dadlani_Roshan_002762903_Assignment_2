@@ -5,6 +5,7 @@
 package com.mycompany.aedassignment2;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.MainHistory;
 import model.MainModel;
@@ -42,6 +43,8 @@ public class LoginPane extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         inpPass = new javax.swing.JPasswordField();
+
+        setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel1.setText("USER ID:");
 
@@ -165,13 +168,15 @@ public class LoginPane extends javax.swing.JPanel {
                         LogoutPane obj = new LogoutPane(history,jSplitPane2,cityArraySize);
                         jSplitPane2.setLeftComponent(obj);
                     }else{
-                        System.out.println("PASSWORD INCORRECT");
+                        JOptionPane.showMessageDialog(this, "Password Incorrect");
+                        return;
                     }
                 }
 
         }
         if(Flag == 0){
-            System.out.println("USER DOESN'T EXIST");
+            JOptionPane.showMessageDialog(this, "USER DOESN'T EXIST");
+            return;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

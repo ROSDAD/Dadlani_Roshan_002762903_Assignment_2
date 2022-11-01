@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
+import model.AppointmentArray;
 import model.MainHistory;
 import model.MainModel;
 
@@ -128,6 +129,8 @@ public class PatientOptionPane extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jPanel3.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel2.setText("NAME:");
 
@@ -417,7 +420,7 @@ public class PatientOptionPane extends javax.swing.JPanel {
                 
                 if(Flag == 0){
 
-                    MainModel mainMo = mainM.get(i).getHospitalArray().get(j).getDoctorArray().get(k).addNewAppointment();
+                    AppointmentArray mainMo = mainM.get(i).getHospitalArray().get(j).getDoctorArray().get(k).addNewAppointment();
                     
                     mainMo.setAppointmentUserId(UserId);
                     mainMo.setAppointmentName(Name);

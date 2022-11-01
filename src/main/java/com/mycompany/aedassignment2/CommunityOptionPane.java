@@ -65,6 +65,8 @@ public class CommunityOptionPane extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         inpUid = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 204, 255));
+
         cityCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cityCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

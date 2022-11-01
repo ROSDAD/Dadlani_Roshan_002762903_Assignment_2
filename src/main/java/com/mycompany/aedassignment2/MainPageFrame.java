@@ -5,6 +5,8 @@
 package com.mycompany.aedassignment2;
 
 import java.util.ArrayList;
+import model.DoctorAction;
+import model.HospitalAction;
 import model.MainHistory;
 import model.MainModel;
 
@@ -20,6 +22,8 @@ public class MainPageFrame extends javax.swing.JFrame {
     String[] userPass = {"12345","12345","12345","12345","12345","12345","12345"};
     String[] userRole = {"SystemAdmin","Patient","Patient","Doctor","Doctor","CommunityAdmin","CommunityAdmin"};
     String[] HospitalArray = {"Fortis Hospital","Apollo Hospital","Leelavati Hospital"};
+    String[] HospitalAddress = {"Left","Right","Top"};
+    
     String[] doctorCityArray = {"Boston","New York"};
     String[] doctorHospitalArray = {"Fortis Hospital","Apollo Hospital"};
     String[] userAddress = {"Left","Right","Left","Right","Left","Right","Left"};
@@ -45,14 +49,10 @@ public class MainPageFrame extends javax.swing.JFrame {
         int Hospitaladmincount = 1;
         for(int i = 0 ; i< HospitalArray.length ; i++){
             ArrayList<MainModel> MainMo = history.getHistory();
-            MainModel mainmodel = MainMo.get(i).addNewHospital();
+            HospitalAction mainmodel = MainMo.get(i).addNewHospital();
             mainmodel.setHospitalName(HospitalArray[i]);
-            for(int k = 0; k<userId.length;k++){
-                if(userRole[i].equals("CommunityAdmin")){
-                mainmodel.setHospitalAdmin(userId[k]);
-                Hospitaladmincount++;
-            }
-            }
+            mainmodel.setHospitalAddress(HospitalAddress[i]);
+
             
         }
         int DoctorCount = 0;
@@ -74,9 +74,11 @@ public class MainPageFrame extends javax.swing.JFrame {
                 int z = findIndex(cityarray,doctorCityArray[DoctorCount]);
                 for(int t = 0;t<MainMo.get(z).getHospitalArray().size();t++ ){
                     if(MainMo.get(findIndex(cityarray,doctorCityArray[DoctorCount])).getHospitalArray().get(t).getHospitalName().equals(doctorHospitalArray[DoctorCount])){
-                MainModel mainmodel = MainMo.get(findIndex(cityarray,doctorCityArray[DoctorCount])).getHospitalArray().get(t).addNewDoctor();
+                DoctorAction mainmodel = MainMo.get(findIndex(cityarray,doctorCityArray[DoctorCount])).getHospitalArray().get(t).addNewDoctor();
                 mainmodel.setDoctorName(userName[i]);
                 mainmodel.setDoctorUserId(userId[i]);
+//                mainmodel.setDoctorContact(long.parseLong(userContact[i]));
+                mainmodel.setDoctorAddress(userAddress[i]);
                 DoctorCount ++ ;
                 }
                 }
@@ -109,6 +111,8 @@ public class MainPageFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("HOSPITAL MANAGEMENT SYSTEM");
 
@@ -126,10 +130,12 @@ public class MainPageFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(455, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -174,7 +180,7 @@ public class MainPageFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel2);

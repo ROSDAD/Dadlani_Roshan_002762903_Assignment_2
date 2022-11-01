@@ -40,6 +40,8 @@ public class LogoutPane extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 204, 255));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("HOSPITAL MANAGEMENT SYSTEM");
 
