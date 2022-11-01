@@ -5,6 +5,7 @@
 package com.mycompany.aedassignment2;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 import model.MainHistory;
@@ -384,7 +385,9 @@ public class PatientOptionPane extends javax.swing.JPanel {
 
     private void createAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAppointmentActionPerformed
                 // TODO add your handling code here:
-                
+                try
+                {
+                FieldsValidation fv = new FieldsValidation();
                 String Name = inpName.getText();
                 String DOB = inpDob.getText(); 
                 String Contact = inpContact.getText();
@@ -434,6 +437,28 @@ public class PatientOptionPane extends javax.swing.JPanel {
 
             }
                 }
+                 if(Name.equals("") || 
+               DOB.equals("") || 
+               Contact.equals("") || 
+               Address.equals("") 
+              
+            )
+           {
+               throw new Exception("Please fill all the fields");
+           }
+            
+          
+           
+           
+           
+        }
+        catch(Exception e){            
+                    System.out.println("!!!!!!Exception : " + e.getMessage()+ "!!!!!!!!!!");                   
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+                    
+        }
+        
+          
     }//GEN-LAST:event_createAppointmentActionPerformed
 
 

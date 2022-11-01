@@ -223,7 +223,8 @@ public class CommunityOptionPane extends javax.swing.JPanel {
     }//GEN-LAST:event_cityComboboxActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-            
+          try{
+            FieldsValidation fv = new FieldsValidation();
             String Uid = inpUid.getText();
             String Name = inpName.getText();
             String Address = inpAddress.getText();
@@ -244,6 +245,31 @@ public class CommunityOptionPane extends javax.swing.JPanel {
               }
             }
         displayCommunity(SelectedCity);
+        if(Name.equals("") || Address.equals("") || Contact.equals("") )
+           {
+               throw new Exception("Please fill all the fields");
+           }
+            
+           if(!fv.verifyName(Name)){
+               inpName.setText("");
+               throw new Exception("Please enter valid name");
+           }
+           
+           if(!fv.verifyContact(Contact)){
+               inpContact.setText("");
+               throw new Exception("Please enter valid contact no");
+           }
+           
+           if(!fv.verifyAdress(Address)){
+               inpAddress.setText("");
+               throw new Exception("Please enter valid address");
+           }
+            
+        }
+        catch(Exception e){            
+                    System.out.println("!!!!!!Exception : " + e.getMessage()+ "!!!!!!!!!!");                   
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+        }        
             
     }//GEN-LAST:event_addBtnActionPerformed
 

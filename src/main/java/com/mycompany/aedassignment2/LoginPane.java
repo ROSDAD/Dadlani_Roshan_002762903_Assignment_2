@@ -39,9 +39,9 @@ public class LoginPane extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         inpUserId = new javax.swing.JTextField();
-        inpPass = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        inpPass = new javax.swing.JPasswordField();
 
         jLabel1.setText("USER ID:");
 
@@ -73,8 +73,8 @@ public class LoginPane extends javax.swing.JPanel {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(inpUserId)
-                                    .addComponent(inpPass, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))))
+                                    .addComponent(inpUserId, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(inpPass)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(166, 166, 166)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -161,19 +161,7 @@ public class LoginPane extends javax.swing.JPanel {
                             CommunityOptionPane obj = new CommunityOptionPane(history,jSplitPane2);
                             jSplitPane2.setRightComponent(obj);
                         }
-                        if(mainM.get(i).getPersonRole() == "HospitalAdmin"){
-                            MainModel mainModel = history.addNewSession();
-                            mainModel.setSessionName(mainM.get(i).getPersonName());
-                            mainModel.setSessionRole(mainM.get(i).getPersonRole());
-                            mainModel.setSessionId(mainM.get(i).getPersonId());
-                            mainModel.setSessionPass(mainM.get(i).getPersonPassword());
-                            mainModel.setSessionAddress(mainM.get(i).getPersonAddress());
-                            mainModel.setSessionContact(mainM.get(i).getPersonContact());
-                            mainModel.setSessionDob(mainM.get(i).getPersonDob());
-                            mainModel.setSessionGender(mainM.get(i).getPersonGender());
-                            HospitalAdminPane obj = new HospitalAdminPane(history,jSplitPane2);
-                            jSplitPane2.setRightComponent(obj);
-                        }
+                        
                         LogoutPane obj = new LogoutPane(history,jSplitPane2,cityArraySize);
                         jSplitPane2.setLeftComponent(obj);
                     }else{
@@ -189,7 +177,7 @@ public class LoginPane extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField inpPass;
+    private javax.swing.JPasswordField inpPass;
     private javax.swing.JTextField inpUserId;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

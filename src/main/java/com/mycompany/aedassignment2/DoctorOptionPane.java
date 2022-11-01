@@ -418,6 +418,8 @@ public class DoctorOptionPane extends javax.swing.JPanel {
     }//GEN-LAST:event_viewPatientActionPerformed
 
     private void updatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePatientActionPerformed
+        
+        
         String PatientUserId;
         String UserId=SessionId;
         int Count = 0;
@@ -464,6 +466,9 @@ public class DoctorOptionPane extends javax.swing.JPanel {
                 }
         }
         displayEncounters(UserId,PatientUserId);
+        
+        
+           
     }//GEN-LAST:event_updatePatientActionPerformed
 
 

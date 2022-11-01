@@ -15,14 +15,18 @@ import model.MainModel;
 public class MainPageFrame extends javax.swing.JFrame {
     MainHistory history;
     String[] cityarray = {"Boston","New York","Los Angeles"};
-    String[] userId = {"admin","patient1","patient2","doctor1","doctor2","community1","community2","hospitaladmin1","hospitaladmin2"};
-    String[] userName = {"admin","patient1","patient2","doctor1","doctor2","community1","community2","hospitaladmin1","hospitaladmin2"};
-    String[] userPass = {"12345","12345","12345","12345","12345","12345","12345","12345","12345"};
-    String[] userRole = {"SystemAdmin","Patient","Patient","Doctor","Doctor","CommunityAdmin","CommunityAdmin","HospitalAdmin","HospitalAdmin"};
+    String[] userId = {"admin","patient1","patient2","doctor1","doctor2","community1","community2"};
+    String[] userName = {"admin","patient1","patient2","doctor1","doctor2","community1","community2"};
+    String[] userPass = {"12345","12345","12345","12345","12345","12345","12345"};
+    String[] userRole = {"SystemAdmin","Patient","Patient","Doctor","Doctor","CommunityAdmin","CommunityAdmin"};
     String[] HospitalArray = {"Fortis Hospital","Apollo Hospital","Leelavati Hospital"};
     String[] doctorCityArray = {"Boston","New York"};
     String[] doctorHospitalArray = {"Fortis Hospital","Apollo Hospital"};
-    String[] HospitaladminArray = {"Fortis Hospital","Apollo Hospital"};
+    String[] userAddress = {"Left","Right","Left","Right","Left","Right","Left"};
+    String[] userDob = {"20/2/2010","25/1/2000","22/2/2008","20/5/2010","20/2/2007","2/2/2002","5/6/2011"};
+    String[] userContact = {"1234567980","1237894560","7894561230","8973214560","6542317890","1237890456","7564891230"};
+    String[] userGender = {"Male","Female","Male","Female","Male","Male","Female"};
+    String[] userCity = {"Boston","New York","Los Angeles","Boston","New York","Los Angeles","Boston"};
     
     /**
      * Creates new form MainLoginPage
@@ -59,6 +63,12 @@ public class MainPageFrame extends javax.swing.JFrame {
             MainMod.setPersonName(userName[i]);
             MainMod.setPersonPassword(userPass[i]);
             MainMod.setPersonRole(userRole[i]);
+            MainMod.setPersonCity(userCity[i]);
+            MainMod.setPersonAddress(userAddress[i]);
+            MainMod.setPersonDob(userDob[i]);
+            MainMod.setPersonContact(userContact[i]);
+            MainMod.setPersonGender(userGender[i]);
+
             if(userRole[i] == "Doctor"){
                 
                 int z = findIndex(cityarray,doctorCityArray[DoctorCount]);
