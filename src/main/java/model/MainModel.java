@@ -22,14 +22,26 @@ public class MainModel {
       private String doctorUserId;
       private String DoctorAddress;
       private long DoctorContact;
+      
       private String PersonName;
       private String PersonId;
       private String PersonPass;
       private String PersonRole;
+      private String PersonAddress;
+      private String PersonContact;
+      private String PersonDob;
+      private String PersonGender;
+      private String PersonCity;
+      
       private String SessionPass;
       private String SessionRole;
       private String SessionId;
       private String SessionName;
+      private String SessionGender;
+      private String SessionAddress;
+      private String SessionContact;
+      private String SessionDob;
+      
       private String appointmentUserId;
       private String appointmentName;
       private String appointmentDob;
@@ -184,6 +196,30 @@ public class MainModel {
    public String getSessionName() {
         return SessionName;
     }
+   public void setSessionAddress(String SessionAddress) {
+        this.SessionAddress = SessionAddress;
+    }
+   public String getSessionAddress() {
+        return SessionAddress;
+    }
+   public void setSessionContact(String SessionContact) {
+        this.SessionContact = SessionContact;
+    }
+   public String getSessionContact() {
+        return SessionContact;
+    }
+   public void setSessionDob(String SessionDob) {
+        this.SessionDob = SessionDob;
+    }
+   public String getSessionDob() {
+        return SessionDob;
+    }
+   public void setSessionGender(String SessionGender) {
+        this.SessionGender = SessionGender;
+    }
+   public String getSessionGender() {
+        return SessionGender;
+    }
     public String getSessionRole() {
         return SessionRole;
     }
@@ -220,6 +256,36 @@ public class MainModel {
     }
     public void setPersonPassword(String PersonPass) {
         this.PersonPass = PersonPass;
+    }
+    public void setPersonAddress(String PersonAddress) {
+        this.PersonAddress = PersonAddress;
+    }
+    public String getPersonAddress() {
+        return PersonAddress;
+    }
+    public void setPersonContact(String PersonContact) {
+        this.PersonContact = PersonContact;
+    }
+    public String getPersonContact() {
+        return PersonContact;
+    }
+    public void setPersonCity(String PersonCity) {
+        this.PersonCity = PersonCity;
+    }
+    public String getPersonCity() {
+        return PersonCity;
+    }
+    public void setPersonDob(String PersonDob) {
+        this.PersonDob = PersonDob;
+    }
+    public String getPersonDob() {
+        return PersonDob;
+    }
+    public void setPersonGender(String PersonGender) {
+        this.PersonGender = PersonGender;
+    }
+    public String getPersonGender() {
+        return PersonGender;
     }
     public String getPersonName() {
         return PersonName;

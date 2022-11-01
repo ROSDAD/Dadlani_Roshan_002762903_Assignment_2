@@ -116,7 +116,10 @@ public class LoginPane extends javax.swing.JPanel {
                             mainModel.setSessionRole(mainM.get(i).getPersonRole());
                             mainModel.setSessionId(mainM.get(i).getPersonId());
                             mainModel.setSessionPass(mainM.get(i).getPersonPassword());
-                            
+                            mainModel.setSessionAddress(mainM.get(i).getPersonAddress());
+                            mainModel.setSessionContact(mainM.get(i).getPersonContact());
+                            mainModel.setSessionDob(mainM.get(i).getPersonDob());
+                            mainModel.setSessionGender(mainM.get(i).getPersonGender());
                             PatientOptionPane obj = new PatientOptionPane(history,jSplitPane2);
                             jSplitPane2.setRightComponent(obj);
                         }
@@ -126,6 +129,10 @@ public class LoginPane extends javax.swing.JPanel {
                             mainModel.setSessionRole(mainM.get(i).getPersonRole());
                             mainModel.setSessionId(mainM.get(i).getPersonId());
                             mainModel.setSessionPass(mainM.get(i).getPersonPassword());
+                            mainModel.setSessionAddress(mainM.get(i).getPersonAddress());
+                            mainModel.setSessionContact(mainM.get(i).getPersonContact());
+                            mainModel.setSessionDob(mainM.get(i).getPersonDob());
+                            mainModel.setSessionGender(mainM.get(i).getPersonGender());
                             SystemAdminPane obj = new SystemAdminPane(history,jSplitPane2);
                             jSplitPane2.setRightComponent(obj);
                         }if(mainM.get(i).getPersonRole() == "Doctor"){
@@ -134,6 +141,10 @@ public class LoginPane extends javax.swing.JPanel {
                             mainModel.setSessionRole(mainM.get(i).getPersonRole());
                             mainModel.setSessionId(mainM.get(i).getPersonId());
                             mainModel.setSessionPass(mainM.get(i).getPersonPassword());
+                            mainModel.setSessionAddress(mainM.get(i).getPersonAddress());
+                            mainModel.setSessionContact(mainM.get(i).getPersonContact());
+                            mainModel.setSessionDob(mainM.get(i).getPersonDob());
+                            mainModel.setSessionGender(mainM.get(i).getPersonGender());
                             DoctorOptionPane obj = new DoctorOptionPane(history,jSplitPane2,mainM.get(i).getPersonId());
                             jSplitPane2.setRightComponent(obj);
                         }
@@ -143,6 +154,10 @@ public class LoginPane extends javax.swing.JPanel {
                             mainModel.setSessionRole(mainM.get(i).getPersonRole());
                             mainModel.setSessionId(mainM.get(i).getPersonId());
                             mainModel.setSessionPass(mainM.get(i).getPersonPassword());
+                            mainModel.setSessionAddress(mainM.get(i).getPersonAddress());
+                            mainModel.setSessionContact(mainM.get(i).getPersonContact());
+                            mainModel.setSessionDob(mainM.get(i).getPersonDob());
+                            mainModel.setSessionGender(mainM.get(i).getPersonGender());
                             CommunityOptionPane obj = new CommunityOptionPane(history,jSplitPane2);
                             jSplitPane2.setRightComponent(obj);
                         }
@@ -152,6 +167,10 @@ public class LoginPane extends javax.swing.JPanel {
                             mainModel.setSessionRole(mainM.get(i).getPersonRole());
                             mainModel.setSessionId(mainM.get(i).getPersonId());
                             mainModel.setSessionPass(mainM.get(i).getPersonPassword());
+                            mainModel.setSessionAddress(mainM.get(i).getPersonAddress());
+                            mainModel.setSessionContact(mainM.get(i).getPersonContact());
+                            mainModel.setSessionDob(mainM.get(i).getPersonDob());
+                            mainModel.setSessionGender(mainM.get(i).getPersonGender());
                             HospitalAdminPane obj = new HospitalAdminPane(history,jSplitPane2);
                             jSplitPane2.setRightComponent(obj);
                         }

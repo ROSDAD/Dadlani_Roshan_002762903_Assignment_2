@@ -5,6 +5,7 @@
 package com.mycompany.aedassignment2;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 import model.MainHistory;
@@ -17,7 +18,7 @@ import model.MainModel;
 public class CommunityOptionPane extends javax.swing.JPanel {
     MainHistory history;
     JSplitPane jSplitPane2;
-    
+    String SelectedCity;
     /**
      * Creates new form CommunityOptionPane
      */
@@ -25,6 +26,14 @@ public class CommunityOptionPane extends javax.swing.JPanel {
         initComponents();
         this.history = history;
         this.jSplitPane2 = jSplitPane;
+        cityCombobox.removeAllItems();
+        for(MainModel mainM : history.getHistory()){
+                if(mainM.getCity()!=null){
+                    cityCombobox.addItem(mainM.getCity());
+                }
+            }
+         
+       
     }
 
     /**
@@ -51,8 +60,10 @@ public class CommunityOptionPane extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        inpContact1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        inpDob = new javax.swing.JTextField();
+        inpGender = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        inpUid = new javax.swing.JLabel();
 
         cityCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cityCombobox.addActionListener(new java.awt.event.ActionListener() {
@@ -63,13 +74,13 @@ public class CommunityOptionPane extends javax.swing.JPanel {
 
         communityTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "NAME", "ADDRESS", "CONTACT", "DOB", "GENDER"
+                "UID", "NAME", "ADDRESS", "CONTACT", "DOB", "GENDER", "ROLE"
             }
         ));
         jScrollPane1.setViewportView(communityTable);
@@ -104,55 +115,61 @@ public class CommunityOptionPane extends javax.swing.JPanel {
 
         jLabel12.setText("GENDER");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel4.setText("UID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cityCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 480, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cityCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 480, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(338, 338, 338)
+                                .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(270, 270, 270)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(inpName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(65, 65, 65)
+                                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(inpGender))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(inpDob))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(inpContact))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(inpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(inpUid, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(338, 338, 338)
-                        .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(inpName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(inpContact1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(inpContact))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(inpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,6 +184,10 @@ public class CommunityOptionPane extends javax.swing.JPanel {
                 .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inpUid, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(inpName)
@@ -182,81 +203,77 @@ public class CommunityOptionPane extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inpContact1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inpDob, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jComboBox1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inpGender, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void cityComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboboxActionPerformed
-//        if(cityCombobox.getSelectedIndex()!=-1){
-//            ArrayList<MainModel> mainM = history.getHistory();
-//            hospitalCombobox.removeAllItems();
-//
-//            int Flag = 0;
-//            int j = cityCombobox.getSelectedIndex();
-//            for (int i =0;i<mainM.get(j).getHospitalArray().size();i++){
-//
-//                hospitalCombobox.addItem(mainM.get(j).getHospitalArray().get(i).getHospitalName());
-//
-//            }
-//            if(hospitalCombobox.getSelectedIndex()!=-1){
-//                displayDoctor(cityCombobox.getSelectedIndex(),hospitalCombobox.getSelectedIndex());
-//            }
-//
-//        }
+        if(cityCombobox.getSelectedItem()!=null){
+            this.SelectedCity =cityCombobox.getSelectedItem().toString();
+            displayCommunity(SelectedCity);
+        }
+        
     }//GEN-LAST:event_cityComboboxActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-//        String Name = inpName.getText();
-//        //        String Address = inpAddress.getText();
-//        //        long Contact = Long.parseLong(inpContact.getText());
-//        String City = (String) cityCombobox.getSelectedItem();
-//        String Hospital = (String) hospitalCombobox.getSelectedItem();
-//        int i = cityCombobox.getSelectedIndex();
-//        int j = hospitalCombobox.getSelectedIndex();
-//        ArrayList<MainModel> mainM = history.getHistory();
-//
-//        //        System.out.println(mainM.size());
-//        int Flag = 0;
-//        //        for(int i = 0;i<mainM.size();i++){
-//            if(mainM.get(i).getCity() == cityCombobox.getSelectedItem().toString() && mainM.get(i).getHospitalArray().get(j).getHospitalName() == hospitalCombobox.getSelectedItem().toString()){
-//                System.out.println(mainM.get(i).getCity());
-//                mainM.get(i).getHospitalArray();
-//                for(int k =0 ; k < mainM.get(i).getHospitalArray().size();k++){
-//
-//                    if(mainM.get(i).getHospitalArray().get(k).getHospitalName().equals(Name)){
-//                        Flag = 1;
-//
-//                    }
-//                }
-//                if(Flag == 0){
-//
-//                    MainModel mainMo = mainM.get(i).getHospitalArray().get(j).addNewDoctor();
-//                    System.out.println(Name);
-//                    mainMo.setDoctorName(Name);
-//                    //                    mainMo.setHospitalContact(Contact);
-//                    //                    mainMo.setHospitalAddress(Address);
-//                    //                    System.out.println(mainM.get(i).getHospitalArray().get(j).getDoctorArray().get(0).getDoctorName()+" "+i);
-//                    displayDoctor(cityCombobox.getSelectedIndex(),hospitalCombobox.getSelectedIndex());
-//
-//                }
-//                else{
-//                    System.out.println("Hospital Already Exists");
-//                }
-//                //                break;
-//            }
-
-            //        }
+            
+            String Uid = inpUid.getText();
+            String Name = inpName.getText();
+            String Address = inpAddress.getText();
+            String Contact = inpContact.getText();
+            String Dob = inpDob.getText();
+            String Gender = inpGender.getText();
+            ArrayList<MainModel> mainM = history.getHistory();
+            for(int i =0;i<mainM.size();i++){
+                
+              if(mainM.get(i).getPersonId() != null && mainM.get(i).getPersonId() == Uid){
+                  
+                  mainM.get(i).setPersonName(Name);
+                  mainM.get(i).setPersonAddress(Address);
+                  mainM.get(i).setPersonContact(Contact);
+                  mainM.get(i).setPersonDob(Dob);
+                  mainM.get(i).setPersonGender(Gender);
+                  break;
+              }
+            }
+        displayCommunity(SelectedCity);
+            
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
-        // TODO add your handling code here:
+        ArrayList<MainModel> mainM = history.getHistory();
+        
+        int selectedRowIndex = communityTable.getSelectedRow();
+        if (selectedRowIndex<0) {
+            JOptionPane.showMessageDialog(this, "Select a row to delete.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) communityTable.getModel();      
+        for(int i =0;i<mainM.size();i++){
+          if(mainM.get(i).getPersonId() != null && mainM.get(i).getPersonCity() == SelectedCity){
+           
+            
+            inpUid.setText((model.getValueAt(selectedRowIndex, 0)).toString());
+            inpName.setText((model.getValueAt(selectedRowIndex, 1)).toString());
+            inpAddress.setText((model.getValueAt(selectedRowIndex, 2)).toString());
+            inpContact.setText((model.getValueAt(selectedRowIndex, 3)).toString());
+            inpDob.setText((model.getValueAt(selectedRowIndex, 4)).toString());
+            inpGender.setText((model.getValueAt(selectedRowIndex, 5)).toString());
+            
+
+            
+
+
+           
+            }
+        }
     }//GEN-LAST:event_viewBtnActionPerformed
 
 
@@ -266,33 +283,43 @@ public class CommunityOptionPane extends javax.swing.JPanel {
     private javax.swing.JTable communityTable;
     private javax.swing.JTextField inpAddress;
     private javax.swing.JTextField inpContact;
-    private javax.swing.JTextField inpContact1;
+    private javax.swing.JTextField inpDob;
+    private javax.swing.JTextField inpGender;
     private javax.swing.JTextField inpName;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel inpUid;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
-private void displayCommunity(int j,int k) {
+private void displayCommunity(String city) {
         DefaultTableModel model = (DefaultTableModel) communityTable.getModel();
         model.setRowCount(0);
         ArrayList<MainModel> mainM = history.getHistory();
-               
+        
+            
               
-        for (int i =0;i<mainM.get(j).getHospitalArray().get(k).getDoctorArray().size();i++){
-          if(mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorName() != null){
-            Object[] row = new Object[3];
+        for(int i =0;i<mainM.size();i++){
+          if(mainM.get(i).getPersonId() != null && mainM.get(i).getPersonCity() == city){
+            Object[] row = new Object[7];
+            
+            row[0] = mainM.get(i).getPersonId();
+            row[1] = mainM.get(i).getPersonName();
+            row[2] = mainM.get(i).getPersonAddress();
+            row[3] = mainM.get(i).getPersonContact();
+            row[4] = mainM.get(i).getPersonDob();
+            row[5] = mainM.get(i).getPersonGender();
+            row[6] = mainM.get(i).getPersonRole();
+//            row[6] = mainM.get(i).getPersonAddress();
             
             
-            row[0] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorName();
-            row[1] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorAddress();
-            row[2] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorContact();
+//            row[2] = mainM.get(j).getHospitalArray().get(k).getDoctorArray().get(i).getDoctorContact();
             
 
 

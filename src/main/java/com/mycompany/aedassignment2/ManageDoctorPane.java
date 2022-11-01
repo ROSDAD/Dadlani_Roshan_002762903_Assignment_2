@@ -27,9 +27,10 @@ public class ManageDoctorPane extends javax.swing.JPanel {
         cityCombobox.removeAllItems();
         
         for(MainModel mainM : history.getHistory()){
-            
+            if(mainM.getCity()!=null){
                 cityCombobox.addItem(mainM.getCity());
-                
+            }
+            
             }
         
         ArrayList<MainModel> mainM = history.getHistory();
@@ -427,7 +428,7 @@ public class ManageDoctorPane extends javax.swing.JPanel {
         }
        
         DefaultTableModel model = (DefaultTableModel) doctorTable.getModel();
-//        Employee emp = (Employee) model.getValueAt(selectedRowIndex,0);
+
         int cityIndex = cityCombobox.getSelectedIndex();
         int hospitalIndex = hospitalCombobox.getSelectedIndex();
         ArrayList<MainModel> mainM = history.getHistory();
